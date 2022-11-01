@@ -3,7 +3,10 @@ pipeline {
   tools {
         maven "M3" 
    }
-
+mvn clean verify sonar:sonar \
+  -Dsonar.projectKey=maven-pipeline \
+  -Dsonar.host.url=http://34.142.46.33:9000 \
+  -Dsonar.login=sqp_ac86161d4429026f6293501f9e78dca1dd1ebe3f
   stages {
       stage('Build Artifact') 
       {
