@@ -1,7 +1,7 @@
 pipeline {
-  agent any
+  agent any // means run on any machine that is available to Jenkins
   tools {
-        maven "Maven 3.8.6" 
+        maven "M3"
    }
 
   stages {
