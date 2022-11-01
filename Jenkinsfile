@@ -40,7 +40,7 @@ pipeline {
           steps 
           { 
               input('Continue to Deploy?') 
-              echo 'Deploying to Production Environment' 
+              echo 'Change Manager has approved?' 
           } 
       }
       stage('Production Environment') 
@@ -48,7 +48,7 @@ pipeline {
           steps 
           { 
               input('Continue to Deploy?') 
-              echo 'Deploying to Production Environment' 
+              echo 'Shall we go live' 
           } 
       }
     }
