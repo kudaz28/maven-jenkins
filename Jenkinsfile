@@ -3,6 +3,13 @@ pipeline {
   tools {
         maven "M3"
    }
+  options {
+    timeout(time: 2, unit: 'MINUTES'){
+      script {
+        waitForQualityGate abortPipeline: true
+      }
+    } 
+  }
   // this is a dummy change
   stages {
       stage('Build Artifact') 
