@@ -3,7 +3,7 @@ pipeline {
   tools {
         maven "M3"
    }
-
+  // this is a dummy change
   stages {
       stage('Build Artifact') 
       {
