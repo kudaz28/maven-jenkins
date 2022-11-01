@@ -3,7 +3,12 @@ pipeline {
   tools {
         maven "M3" 
    }
+  
 //a new change
+  mvn clean verify sonar:sonar \
+  -Dsonar.projectKey=maven-jenkins-pipeline \
+  -Dsonar.host.url=http://34.142.46.33:9000 \
+  -Dsonar.login=sqp_94ab152d7d5a1ce827d7c73d910103940e6a5f20
   stages {
       stage('Build Artifact') 
       {
