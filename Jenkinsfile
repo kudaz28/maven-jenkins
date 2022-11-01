@@ -24,19 +24,20 @@ pipeline {
       }
     stage('Sonarqube Analysis - SAST')  
       { 
-        options {
+        steps  
+        { 
+           withSonarQubeEnv('SonarQube')  
+           { 
+              sh "mvn sonar:sonar -Dsonar.projectKey=maven-jenkins-pipeline -Dsonar.host.url=http://34.105.199.221:9000"  
+           }
+          
+           options {
     timeout(time: 2, unit: 'MINUTES'){
       script {
         waitForQualityGate abortPipeline: true
       }
     } 
   }
-        steps  
-        { 
-           withSonarQubeEnv('SonarQube')  
-           { 
-              sh "mvn sonar:sonar -Dsonar.projectKey=maven-jenkins-pipeline -Dsonar.host.url=http://34.105.199.221:9000"  
-           } 
         } 
       } 
       stage('Dev Environment') 
