@@ -21,7 +21,29 @@ pipeline {
               echo "Running unit tests"
             }
       }
-      stage('Deploy') 
+      stage('Dev Environment') 
+      { 
+          steps 
+          { 
+              echo 'Deploying to Dev Environment' 
+          } 
+      }
+    stage('Test Environment') 
+      { 
+          steps 
+          { 
+              echo 'Deploying to QA Environment' 
+          } 
+      }
+    stage('UAT Environment') 
+      { 
+          steps 
+          { 
+              input('Continue to Deploy?') 
+              echo 'Deploying to Production Environment' 
+          } 
+      }
+    stage('Production Environment') 
       { 
           steps 
           { 
