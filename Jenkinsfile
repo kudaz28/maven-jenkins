@@ -29,12 +29,19 @@ pipeline {
           {
              sh "mvn sonar:sonar -Dsonar.projectKey=maven-jenkins-pipeline -Dsonar.host.url=http://34.142.104.240:9000"   
           }
-          script 
+          /*script 
           {
             def qualitygate = waitForQualityGate()
             if (qualitygate.status != "OK") {
                error "Pipeline aborted due to quality gate coverage failure: ${qualitygate.status}"
             }
+          }*/
+          timeout(time: 1, unit: 'MINUTES') 
+          {
+             script 
+             {
+               waitForQualityGate abortPipeline: true
+             }
           }
         }
       }
