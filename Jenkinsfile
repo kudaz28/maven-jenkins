@@ -20,16 +20,30 @@ pipeline {
               echo "Running unit tests"
             }
       }
-    stage('Sonarqube Analysis - SAST')  
-      { 
-        steps  
-        { 
-           withSonarQubeEnv('SonarQube')  
-           { 
-              sh "mvn sonar:sonar -Dsonar.projectKey=maven-pipeline -Dsonar.host.url=http://34.142.46.33:9000"  
-           } 
-        } 
-      } 
+   stage ("Sonarqube Analysis - SASTs") 
+      {
+        steps 
+        {
+          withSonarQubeEnv('SonarQube') 
+          {
+             sh "mvn sonar:sonar -Dsonar.projectKey=maven-jenkins-pipeline -Dsonar.host.url=35.197.246.176"   
+          }
+          /*script 
+          {
+            def qualitygate = waitForQualityGate()
+            if (qualitygate.status != "OK") {
+               error "Pipeline aborted due to quality gate coverage failure: ${qualitygate.status}"
+            }
+          }*/
+          timeout(time: 1, unit: 'MINUTES') 
+          {
+             script 
+             {
+               waitForQualityGate abortPipeline: true
+             }
+          }
+        }
+      }
       stage('Dev Environment') 
       { 
           steps 
