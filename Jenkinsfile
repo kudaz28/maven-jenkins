@@ -4,6 +4,7 @@ pipeline {
         maven "M3"
    }
   // this is a dummy change
+  // another dummy change
   stages {
       stage('Build Artifact') 
       {
