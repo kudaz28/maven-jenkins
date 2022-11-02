@@ -5,6 +5,7 @@ pipeline {
    }
   // this is a dummy change
   // another dummy change
+  // and another dummy change - will it trigger a build?
   stages {
       stage('Build Artifact') 
       {
